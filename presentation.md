@@ -194,29 +194,40 @@ Line:
 <!-- IMAGE: images/dev-robot-pair.png
 IMAGE PROMPT: (reuse) Hand-drawn pencil illustration of a software developer and a small friendly robot sitting side by side at a desk, both looking at the same laptop screen, collaborative feel, off-white paper background, no text.
 -->
-![bg left:40%](images/dev-robot-pair.png)
+<!-- IMAGE: images/pure-functions.png
+IMAGE PROMPT: Hand-drawn pencil illustration of a simple data pipeline: small boxes connected by arrows from left to right, with clear input and output arrows, suggesting pure functions and data flow, off-white paper background, no text.
+-->
+![bg left:40%](images/pure-functions.png)
 
-## Pattern 4 – Treat AI like a keen junior
+## Pattern 4 – Shape work as small, pure functions
 
-* Ask for the plan before the code
-* Use it for options, not final truth
+* Keep logic in tiny, stateless units
+* Push I/O and side-effects to the edges
 
 <!--
 NOTES:
-Lean into the metaphor.
+Make the functional-style connection explicit.
 
-Suggested flow:
-- “Propose a plan for implementing X.”
-- “List 2–3 approaches with trade-offs.”
-- THEN ask it to implement the approach you choose.
+Explain:
+- When most of your logic lives in small, pure functions (no hidden state, no I/O),
+  the AI has a much easier job producing correct code.
+- Pure functions are trivial to unit test, so your “fitness functions” stay fast and cheap.
+- Side-effects (DB calls, HTTP, logging) get wrapped in thin shells around that pure core.
 
-Benefits:
-- Surfaces misunderstandings early.
-- Keeps you in control of design.
-- Produces better explanations for reviewers.
+Concrete guidance:
+- Ask the AI first for a pure function that transforms input → output.
+- Then ask for a tiny wrapper that wires in the database, HTTP client, or message bus.
+- Keep mutating code and shared state at the edges of your system, not in the middle.
 
-Line:
-“If you wouldn’t let a new grad silently rewrite a core module, don’t let the AI do it either.”
+Example to mention:
+Instead of “write a service that fetches data, transforms it, logs, and saves it”,
+split the work into:
+1) a pure transform function, and
+2) a small orchestration function that does the fetching and saving.
+
+Punchline:
+“Treat AI-generated code like Lego: lots of small bricks, very few giant sculptures.
+The smaller and purer the units, the easier it is for both humans and AI to reason about them.”
 -->
 
 ---
