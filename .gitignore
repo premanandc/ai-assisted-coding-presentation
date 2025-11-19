@@ -1,0 +1,22 @@
+# Generated presentation files
+presentation.html
+presentation.pdf
+
+# Node modules (if using Marp CLI)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+
