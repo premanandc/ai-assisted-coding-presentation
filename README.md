@@ -5,6 +5,7 @@ A practical, experience-based presentation about patterns and anti-patterns in A
 ## Overview
 
 This talk is designed as a **field report**, not a hype talk. It covers:
+
 - 6 practical patterns that keep teams fast and safe
 - 6 anti-patterns that quietly hurt productivity
 - Actionable takeaways for immediate team adoption
@@ -34,14 +35,17 @@ You can use this presentation in **two ways**:
    - Install from [nodejs.org](https://nodejs.org/)
 
 2. **Marp CLI**
+
    ```bash
    npm install -g @marp-team/marp-cli
    ```
 
 3. **Verify Installation**
+
    ```bash
    marp --version
    ```
+
    You should see output like `@marp-team/marp-cli v3.x.x`
 
 ### Which Option Should I Choose?
@@ -75,6 +79,7 @@ A convenience script is provided for quick access to common tasks:
 ```
 
 **Quick shortcuts:**
+
 - `./present.sh p` → preview
 - `./present.sh w` → watch mode (no browser)
 - `./present.sh h` → generate HTML
@@ -167,7 +172,7 @@ The presentation is designed to be adaptable. Consider:
 
 ### Presentation Flow
 
-```
+```text
 Introduction (3 slides, ~3-5 min)
   └─ Set expectations: practical, not hype
 
@@ -216,6 +221,7 @@ style: |
 ### Modifying Images
 
 All images are in `/images/` and are hand-drawn pencil illustrations. Each slide's markdown includes:
+
 - The image filename
 - The original prompt used to generate it (for reference/regeneration)
 
@@ -223,7 +229,7 @@ To replace an image, simply swap the file in `/images/` keeping the same filenam
 
 ## File Structure
 
-```
+```text
 .
 ├── presentation.md          # Main presentation source (Marp markdown)
 ├── presentation.html        # Generated HTML (for presenting)
@@ -263,32 +269,38 @@ Includes PDF bookmarks for easy navigation.
 
 ### VS Code Extension Issues
 
-**Extension not showing preview**
+#### Extension not showing preview
+
 - Make sure you've installed "Marp for VS Code" (not other markdown extensions)
 - Try reloading VS Code (Cmd+Shift+P / Ctrl+Shift+P → "Reload Window")
 - Check that the file is named `.md` and contains `marp: true` in the front matter
 
-**Images not showing in VS Code preview**
+#### Images not showing in VS Code preview
+
 - Ensure image paths are relative to the markdown file
 - VS Code extension loads images automatically—no special flags needed
 
-**Export button is grayed out**
+#### Export button is grayed out
+
 - The file must be recognized as a Marp presentation (check for `marp: true` in front matter)
 - Try closing and reopening the file
 
-**Export to PDF requires Chrome/Chromium**
+#### Export to PDF requires Chrome/Chromium
+
 - VS Code extension uses your system's Chrome/Chromium for PDF export
 - Install Chrome if PDF export fails
 - Alternatively, export to HTML first, then print to PDF from your browser
 
 ### Marp CLI Issues
 
-**Images Not Showing**
+#### Images Not Showing
+
 - **In preview**: Images should load automatically
 - **In exported HTML**: Ensure `images/` folder is in the same directory as the HTML file
 - **In PDF**: Use `--allow-local-files` flag
 
-**Marp CLI Not Found**
+#### Marp CLI Not Found
+
 ```bash
 # Check if installed globally
 npm list -g @marp-team/marp-cli
@@ -299,12 +311,14 @@ npm install -g @marp-team/marp-cli
 
 **Browser Shows Raw Markdown**
 You may have opened `presentation.md` directly. Instead:
+
 1. Run `marp presentation.md -o presentation.html`
 2. Open `presentation.html` in your browser
 
 ### General Issues
 
-**Slides look different between preview and export**
+#### Slides look different between preview and export
+
 - Both VS Code extension and CLI use the same rendering engine
 - Differences usually come from browser rendering or missing fonts
 - Test exported files in the browser you'll use for presenting
@@ -312,6 +326,7 @@ You may have opened `presentation.md` directly. Instead:
 ## Feedback & Iteration
 
 After presenting, consider:
+
 - Which examples resonated most?
 - Which anti-patterns got the biggest nods of recognition?
 - What questions came up in Q&A?
@@ -327,4 +342,3 @@ Feel free to adapt and remix for your own presentations. Attribution appreciated
 - [Marp Documentation](https://marpit.marp.app/)
 - [Marp CLI Documentation](https://github.com/marp-team/marp-cli)
 - [Markdown Guide](https://www.markdownguide.org/)
-
