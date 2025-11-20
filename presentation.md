@@ -173,7 +173,7 @@ IMAGE PROMPT: Hand-drawn pencil illustration of several simple building blocks s
 
 ## Pattern 2 – Keep asks small
 
-- One function, one test, one endpoint
+- One function, one *bounded context*, one **thing**
 - Avoid “whole feature in one go”
 
 <!--
