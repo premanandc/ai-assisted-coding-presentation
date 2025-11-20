@@ -82,16 +82,32 @@ Bridge metaphor: architects/devs create paths across uncertainty; AI just change
 
 ---
 
-![bg vertical right sepia:1.0 fit 30%](images/headshot.png)
-![bg vertical right fit 60%](images/logo.png)
+![bg vertical right:40%](images/data-arch-book-cover.png)
 
-## Who am i?
+## Who am I?
 
 - Developer
 - Author
-- Tinkerer
+- Thoughtworker
 - [Production-grade software using ~~vibe coding~~ AI-assisted development?](https://www.thoughtworks.com/insights/blog/generative-ai/can-vibe-coding-produce-production-grade-software)
+- https://ddd-practitioners.com
 
+<!--
+NOTES:
+Keep this brief—introduce yourself, establish credibility, then move on.
+
+About me:
+- I'm a long-time Thoughtworker at the software consultancy Thoughtworks.
+- I play various technology-facing roles: developer, architect, technical lead—whatever the problem needs.
+- Author of a book on applying Domain-Driven Design (DDD) in pragmatic, real-world ways.
+- Currently writing a second book on Data Architecture.
+
+Connect to the talk:
+"I've been working with AI coding assistants since early 2023, on real client projects and internal tools. Today's talk comes from that hands-on experience—the patterns and anti-patterns we're about to cover are things my teams and I have actually lived through."
+
+Point to the article link:
+"If you want more depth on the 'vibe coding' experiment, that Thoughtworks article digs into whether AI-generated code can actually ship to production. Spoiler: yes, but with caveats—which is what this talk is about."
+-->
 
 ---
 <!-- IMAGE: images/dev-robot-pair.png
