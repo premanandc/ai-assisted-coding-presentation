@@ -82,6 +82,18 @@ Bridge metaphor: architects/devs create paths across uncertainty; AI just change
 
 ---
 
+![bg vertical right sepia:1.0 fit 30%](images/headshot.png)
+![bg vertical right fit 60%](images/logo.png)
+
+## Who am i?
+
+- Developer
+- Author
+- Tinkerer
+- [Production-grade software using ~~vibe coding~~ AI-assisted development?](https://www.thoughtworks.com/insights/blog/generative-ai/can-vibe-coding-produce-production-grade-software)
+
+
+---
 <!-- IMAGE: images/dev-robot-pair.png
 IMAGE PROMPT: Hand-drawn pencil illustration of a software developer and a small friendly robot sitting side by side at a desk, both looking at the same laptop screen, collaborative feel, off-white paper background, no text.
 -->
