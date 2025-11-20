@@ -82,6 +82,8 @@ Bridge metaphor: architects/devs create paths across uncertainty; AI just change
 
 ---
 
+<!-- _paginate: false -->
+
 ![bg vertical right:40%](images/data-arch-book-cover.png)
 
 ## Who am I?
