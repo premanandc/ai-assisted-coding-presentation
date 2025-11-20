@@ -13,8 +13,9 @@ IMAGE PROMPT: A hand-drawn pencil illustration of an old brass compass lying on 
 
 # Real-world Experiences with AI-Assisted Development
 
-* Vibes, agents, and real code
-* Patterns *and* traps we've seen
+- Developer edition
+- Vibes, agents, and real code
+- Patterns *and* traps we've seen
 
 <!--
 NOTES:
@@ -38,8 +39,8 @@ IMAGE PROMPT: A hand-drawn pencil illustration of a lighthouse on a rocky shore,
 
 ## Why talk about this now?
 
-* AI is no longer a toy
-* Practices are still fuzzy
+- AI is no longer a toy
+- Practices are still fuzzy
 
 <!--
 NOTES:
@@ -63,9 +64,9 @@ IMAGE PROMPT: A hand-drawn pencil illustration of a sturdy bridge spanning a gap
 
 ## Where we’ll go
 
-* Quick framing
-* Patterns that keep you fast *and* safe
-* Anti-patterns that quietly hurt you
+- Quick framing
+- Patterns that keep you fast *and* safe
+- Anti-patterns that quietly hurt you
 
 <!--
 NOTES:
@@ -88,8 +89,9 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a software developer and a small
 
 ## How we’re using AI today
 
-* Inline suggestions
-* Chat- and agent-based “vibe coding”
+- Inline suggestions
+- Chat and agent-based “vibe coding”
+- Spec-driven development?
 
 <!--
 NOTES:
@@ -112,8 +114,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a hand holding a pencil over a s
 
 ## Pattern 1 – Start with a clear intent
 
-* One tight paragraph of *what* & *why*
-* Call out constraints explicitly
+- One tight paragraph of *what* & *why*
+- Call out constraints explicitly
 
 <!--
 NOTES:
@@ -141,8 +143,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of several simple building blocks s
 
 ## Pattern 2 – Keep asks small
 
-* One function, one test, one endpoint
-* Avoid “whole feature in one go”
+- One function, one test, one endpoint
+- Avoid “whole feature in one go”
 
 <!--
 NOTES:
@@ -169,8 +171,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a simple lab scene: test tubes i
 
 ## Pattern 3 – Let tests & contracts steer
 
-* Start from tests, examples, or types
-* Use them as the AI’s fitness function
+- Start from tests, examples, or types
+- Use them as the AI’s fitness function
 
 <!--
 NOTES:
@@ -221,8 +223,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a sculptor's hands using a small
 
 ## Pattern 4 – Refine, don't regenerate
 
-* AI gives you *almost* correct code
-* Iterate in small steps, don't start over
+- AI gives you *almost* correct code
+- Iterate in small steps, don't start over
 
 <!--
 NOTES:
@@ -272,8 +274,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of two sheets of paper side by side
 
 ## Pattern 5 – Keep changes reviewable
 
-* Small, coherent diffs
-* Explainable in one sentence
+- Small, coherent diffs
+- Explainable in one sentence
 
 <!--
 NOTES:
@@ -300,8 +302,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a messy workbench with sketches,
 
 ## Pattern 6 – Spike with vibes, then sanitize
 
-* Vibe-code spikes are fine
-* Rewrite anything that survives
+- Vibe-code spikes are fine
+- Rewrite anything that survives
 
 <!--
 NOTES:
@@ -328,8 +330,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a tangled ball of yarn with thre
 
 ## Anti-pattern 1 – Vague, multi-ask prompts
 
-* “Do everything” instructions
-* No context, no constraints
+- “Do everything” instructions
+- No context, no constraints
 
 <!--
 NOTES:
@@ -357,8 +359,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a large excavator or bulldozer a
 
 ## Anti-pattern 2 – One-shot repo surgery
 
-* Agents touching dozens of files
-* Hard to review or roll back
+- Agents touching dozens of files
+- Hard to review or roll back
 
 <!--
 NOTES:
@@ -385,8 +387,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration split in two: on the left a chaotic
 
 ## Anti-pattern 3 – Context stuffing
 
-* “Here’s 20 files, just in case”
-* Signal buried under noise
+- “Here’s 20 files, just in case”
+- Signal buried under noise
 
 <!--
 NOTES:
@@ -424,8 +426,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a person walking in a small circ
 
 ## Anti-pattern 4 – Staying in a bad thread
 
-* Conversation stuck in wrong framing
-* You keep patching instead of restarting
+- Conversation stuck in wrong framing
+- You keep patching instead of restarting
 
 <!--
 NOTES:
@@ -461,8 +463,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a prominent warning flag planted
 
 ## Anti-pattern 5 – Blind copy-paste
 
-* Code pasted without review
-* No tests, no run, no understanding
+- Code pasted without review
+- No tests, no run, no understanding
 
 <!--
 NOTES:
@@ -502,8 +504,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a complex control panel with man
 
 ## Anti-pattern 6 – Over-trusting agents
 
-* No boundaries on what they can touch
-* Tests, config, commits all on autopilot
+- No boundaries on what they can touch
+- Tests, config, commits all on autopilot
 
 <!--
 NOTES:
@@ -531,8 +533,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a few puzzle pieces coming toget
 
 ## Putting it together
 
-* Use AI where speed helps
-* Keep humans owning intent & acceptance
+- Use AI where speed helps
+- Keep humans owning intent & acceptance
 
 <!--
 NOTES:
@@ -556,8 +558,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of three or four people sitting aro
 
 ## Team agreements matter
 
-* Review practices for AI-assisted code
-* Support for developers at different levels
+- Review practices for AI-assisted code
+- Support for developers at different levels
 
 <!--
 NOTES:
@@ -602,8 +604,8 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a clipboard with a short checkli
 
 ## What to try next week
 
-* Pick one pattern → add to team practice
-* Call out one anti-pattern in reviews
+- Pick one pattern → add to team practice
+- Call out one anti-pattern in reviews
 
 <!--
 NOTES:
@@ -654,7 +656,7 @@ IMAGE PROMPT: Hand-drawn pencil illustration of two people standing and talking,
 
 ## Q & A
 
-* Stories, questions, disagreements welcome
+- Stories, questions, disagreements welcome
 
 <!--
 NOTES:
