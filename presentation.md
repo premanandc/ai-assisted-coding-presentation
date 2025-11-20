@@ -88,7 +88,7 @@ Bridge metaphor: architects/devs create paths across uncertainty; AI just change
 
 - Developer
 - Author
-- Thoughtworker
+- [Thoughtworker](https://www.thoughtworks.com)
 - [Production-grade software using ~~vibe coding~~ AI-assisted development?](https://www.thoughtworks.com/insights/blog/generative-ai/can-vibe-coding-produce-production-grade-software)
 - https://ddd-practitioners.com
 
