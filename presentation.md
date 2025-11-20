@@ -148,16 +148,16 @@ IMAGE PROMPT: Hand-drawn pencil illustration of several simple building blocks s
 NOTES:
 Explain why smaller prompts win:
 
-- Limited attention → big requests get fuzzy answers.
+- Big requests introduce ambiguity → fuzzy, incomplete answers.
 - Small units are easier to test and review.
 - Keeps diffs and rollback manageable.
 
 Example contrast:
-Bad: “Build the entire registration flow front to back.”
-Better: “Implement the email verification step for existing registration flow.”
+Bad: "Build the entire registration flow front to back."
+Better: "Implement the email verification step for existing registration flow."
 
 Phrase:
-“Think in AI-sized bricks, not full buildings.”
+"Think in AI-sized bricks, not full buildings."
 -->
 
 ---
@@ -185,49 +185,82 @@ Call out:
 - Types and clear interfaces also act as constraints.
 - This works especially well with agentic tools that auto-run tests.
 
+Advanced: Combine with functional style for maximum robustness
+When you shape your work as small, pure functions with clear contracts:
+- Small: one function does one transformation (easier to test, easier for AI to get right)
+- Pure: no hidden state, no I/O in the logic (input → output, that's it)
+- Clear contracts: strong types, explicit interfaces
+
+This isn't AI-specific advice—functional programming has advocated this for decades.
+But when AI is generating some of your code, these principles compound their value:
+* Pure functions are trivial for AI to implement correctly
+* Easy to test means your "fitness function" stays fast and reliable
+* Easy to review means you catch issues quickly
+* Less surface area for subtle bugs to hide
+
+Practical approach:
+- Ask AI for the pure transformation first: "write a function that takes X and returns Y"
+- Push I/O and side-effects to thin wrappers at the edges
+- Keep mutable state and database calls out of your core logic
+
+You don't need to rewrite your entire system.
+Start with new features: bias toward stateless transformations when the domain allows it.
+
+The result: more robust programs, whether written by humans or AI.
+
 Line:
-“Tests aren’t just for humans anymore — they’re how we talk to the AI about what ‘good’ looks like.”
+"Tests aren't just for humans anymore — they're how we talk to the AI about what 'good' looks like."
 -->
 
 ---
 
-<!-- IMAGE: images/dev-robot-pair.png
-IMAGE PROMPT: (reuse) Hand-drawn pencil illustration of a software developer and a small friendly robot sitting side by side at a desk, both looking at the same laptop screen, collaborative feel, off-white paper background, no text.
+<!-- IMAGE: images/sculptor-chisel.png
+IMAGE PROMPT: Hand-drawn pencil illustration of a sculptor's hands using a small chisel to refine details on a nearly-finished statue, suggesting careful refinement rather than starting over, off-white paper background, no text.
 -->
-<!-- IMAGE: images/pure-functions.png
-IMAGE PROMPT: Hand-drawn pencil illustration of a simple data pipeline: small boxes connected by arrows from left to right, with clear input and output arrows, suggesting pure functions and data flow, off-white paper background, no text.
--->
-![bg left:40%](images/pure-functions.png)
+![bg right:40%](images/sculptor-chisel.png)
 
-## Pattern 4 – Shape work as small, pure functions
+## Pattern 4 – Refine, don't regenerate
 
-* Keep logic in tiny, stateless units
-* Push I/O and side-effects to the edges
+* AI gives you *almost* correct code
+* Iterate in small steps, don't start over
 
 <!--
 NOTES:
-Make the functional-style connection explicit.
+Most AI-generated code isn't perfect on the first try—and that's okay.
 
-Explain:
-- When most of your logic lives in small, pure functions (no hidden state, no I/O),
-  the AI has a much easier job producing correct code.
-- Pure functions are trivial to unit test, so your “fitness functions” stay fast and cheap.
-- Side-effects (DB calls, HTTP, logging) get wrapped in thin shells around that pure core.
+Real scenario (happened twice last sprint):
+- AI writes 80% of what you need
+- Small issues: wrong variable name, slightly off logic, missing edge case
+- Developer's first instinct: hit regenerate
+- Better: spent 30 seconds specifying the fix, got it right immediately
 
-Concrete guidance:
-- Ask the AI first for a pure function that transforms input → output.
-- Then ask for a tiny wrapper that wires in the database, HTTP client, or message bus.
-- Keep mutating code and shared state at the edges of your system, not in the middle.
+Common scenario:
+- AI writes a data validation function with 4 edge cases covered
+- Missing: null handling and empty string check
+- Temptation: "Let me re-prompt and try again from scratch"
 
-Example to mention:
-Instead of “write a service that fetches data, transforms it, logs, and saves it”,
-split the work into:
-1) a pure transform function, and
-2) a small orchestration function that does the fetching and saving.
+Better approach:
+- Ask the AI to fix the specific issue: "Also handle null and empty string"
+- Build on what's working rather than throwing it away
+- Keep the conversation focused on refinements, not full rewrites
+- Result: fixed in 30 seconds vs. 2-3 minutes of re-prompting
 
-Punchline:
-“Treat AI-generated code like Lego: lots of small bricks, very few giant sculptures.
-The smaller and purer the units, the easier it is for both humans and AI to reason about them.”
+When to regenerate instead:
+- The AI fundamentally misunderstood your intent
+- The approach is architecturally wrong
+- You're in an anti-pattern 4 situation (bad thread—see later slide)
+
+Think of it like editing a draft:
+"You don't rewrite the whole essay every time you spot a typo."
+
+Key insight:
+"The AI's mental model of your problem improves with each exchange.
+Iterative refinement builds on that understanding; regeneration throws it away."
+
+Quick decision test:
+"Is this fixable with 2-3 targeted corrections, or am I fighting the whole approach?"
+If fighting the whole approach → restart fresh.
+If just needs tweaks → refine incrementally.
 -->
 
 ---
@@ -357,18 +390,29 @@ IMAGE PROMPT: Hand-drawn pencil illustration split in two: on the left a chaotic
 
 <!--
 NOTES:
-Explain why “more context” isn’t automatically better:
+Explain why "more context" isn't automatically better:
 
 - Models have a limited window and attention.
 - Irrelevant code dilutes important code.
 - Prompts become slower and less accurate.
 
-Practical tip:
-- Only include the files actually touched by the change.
-- If unsure what’s relevant, first ask: “Which files matter for X?” then start a new, clean thread.
+Important distinction:
+This anti-pattern is about MANUAL context selection—when YOU choose what to include.
+Many modern AI coding tools (Claude Code, Cursor, etc.) auto-select context using embeddings and codebase analysis.
+That's usually fine—the tools are designed to pull relevant files.
+
+The trap is when YOU manually add files "just in case":
+- Copying 20 files into a chat window
+- Pasting entire modules when only one function matters
+- Including tangentially related code "for background"
+
+Practical tips:
+- Trust tool-based context selection (but spot-check that it grabbed the right files)
+- When manually adding context: only include files actually touched by the change
+- If unsure what's relevant, first ask: "Which files matter for X?" then start a new, clean thread with just those
 
 Analogy:
-“It’s like answering a simple question while someone hands you their entire filing cabinet.”
+"It's like answering a simple question while someone hands you their entire filing cabinet."
 -->
 
 ---
@@ -387,17 +431,25 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a person walking in a small circ
 NOTES:
 Talk about sunk-cost with chats.
 
-Signs:
+This is surprisingly common—I've watched multiple developers (including myself) do this:
+- First response is 70% right
+- Second attempt drifts to 60%
+- By the fifth try, we're further from the goal than attempt #1
+- Pattern: prompts getting longer and more desperate
+
+Signs you're in a bad thread:
 - AI keeps repeating wrong assumptions.
 - Prompts get longer and more defensive.
 - Answers feel increasingly off.
+- You're explaining the same constraint for the third time.
 
 Advice:
-- Don’t be sentimental; start a fresh chat.
+- Don't be sentimental; start a fresh chat.
 - Copy only the clarified requirements, not the whole history.
+- Treat it like a do-over with better information.
 
 Line:
-“Sometimes the most productive thing you can do is close the tab and start over.”
+"Sometimes the most productive thing you can do is close the tab and start over."
 -->
 
 ---
@@ -414,19 +466,31 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a prominent warning flag planted
 
 <!--
 NOTES:
-Probably the most important anti-pattern.
+Probably the most important anti-pattern—and the most common.
 
-Stories:
+Seen in the wild:
+- Junior dev pasted an AI-generated authentication function
+- Compiled fine, tests passed (tests were also AI-generated)
+- Code review caught: password comparison using == instead of timing-safe comparison
+- Would've been a security vulnerability in production
+
+More stories:
 - AI-generated code that compiled but had subtle logic bugs.
-- Security smells: unsafe SQL, naive crypto, etc.
+- Security smells: unsafe SQL, naive crypto, hardcoded secrets.
+- Off-by-one errors in loops that only triggered with specific data.
+
+The pattern:
+Developer trusts that "it compiles and runs" means "it's correct."
+But AI can generate plausible, working code with subtle flaws.
 
 Guidelines:
 - Always read AI-generated code you commit.
 - Run it. Add or update tests.
-- If it’s too complex to understand, ask the AI to simplify.
+- If it's too complex to understand, ask the AI to simplify.
+- Pay extra attention to: security, edge cases, error handling.
 
 Line:
-“You’re still accountable for this code in production, regardless of who typed it.”
+"You're still accountable for this code in production, regardless of who typed it."
 -->
 
 ---
@@ -485,6 +549,52 @@ Connect to puzzle:
 
 ---
 
+<!-- IMAGE: images/team-table.png
+IMAGE PROMPT: Hand-drawn pencil illustration of three or four people sitting around a table having a discussion, with a laptop visible, collaborative team feel, off-white paper background, no text.
+-->
+![bg right:40%](images/team-table.png)
+
+## Team agreements matter
+
+* Review practices for AI-assisted code
+* Support for developers at different levels
+
+<!--
+NOTES:
+Up to now, we've focused on individual developer practices.
+But AI assistance changes team dynamics—let's talk about that.
+
+Three key team considerations:
+
+1) How to review AI-assisted PRs from teammates:
+- Don't assume AI code is "pre-reviewed" or automatically correct
+- Look for the same things you'd look for in human code: logic, edge cases, security
+- If the diff is too large to review effectively, push back (Pattern 5)
+- Ask: "Can you walk me through the AI-generated parts?" in PR comments
+
+2) Supporting developers with varying AI reliance:
+- Observed pattern: junior devs sometimes over-rely without understanding fundamentals
+- Also observed: senior devs can be overly skeptical and miss genuine productivity gains
+- One team experiment: pair sessions where one prompts, one reviews (both learned)
+- Create space for learning: pair programming sessions where one person prompts AI, the other reviews
+- Share good prompts and workflows that worked (just like sharing good code patterns)
+
+3) Building shared understanding:
+- Make AI usage visible, not hidden: "I used AI for the boilerplate, wrote the business logic myself"
+- Share "this worked well" and "this went badly" stories in retros
+- Document team-specific patterns (your domain, your stack, your constraints)
+
+The goal isn't uniformity:
+Not everyone needs to use AI the same way.
+The goal is shared expectations about quality and review standards.
+
+Punchline:
+"AI tools are individual, but code quality is a team responsibility.
+Make sure your team agreements reflect that."
+-->
+
+---
+
 <!-- IMAGE: images/checklist.png
 IMAGE PROMPT: Hand-drawn pencil illustration of a clipboard with a short checklist and a pencil, a couple of items ticked, off-white paper background, no text.
 -->
@@ -492,20 +602,47 @@ IMAGE PROMPT: Hand-drawn pencil illustration of a clipboard with a short checkli
 
 ## What to try next week
 
-* Formalize 1–2 patterns as team norms
-* Name & retire 1–2 anti-patterns
+* Pick one pattern → add to team practice
+* Call out one anti-pattern in reviews
 
 <!--
 NOTES:
-Make it actionable.
+Make it actionable without being prescriptive.
 
-Examples:
-- Add a small “AI usage” section to your team README or PR template.
-- Try a rule like “ask for plan before code” for one sprint.
-- Explicitly call out blind copy-paste as a red flag in reviews.
+How to formalize a pattern:
+- Add to PR template ("How did AI help? Which patterns did you use?")
+- Include in onboarding docs or team README
+- Discuss in sprint retros: "What AI patterns worked well this week?"
 
-Encourage small steps:
-“You don’t need an AI policy framework to start. A couple of good habits, consistently applied, already move the needle.”
+How to retire an anti-pattern:
+- Call it out explicitly in code reviews when you see it
+- Add to team's definition of done
+- Share examples (anonymized) in team meetings
+
+Concrete examples teams could try (pick what fits YOUR context):
+
+Patterns to codify:
+- "AI-generated code must include tests" in your PR checklist
+- "Keep AI changes under 5 files per PR" as a guideline
+- "Ask AI for implementation plan before code" for complex features
+- "Start from tests" when using AI for new logic
+
+Anti-patterns to call out:
+- Label "blind copy-paste" as a review red flag
+- Team agreement: if stuck in a bad thread, restart fresh
+- No agent changes to >10 files without human checkpoint
+
+Start small:
+Don't try to implement all 6 patterns and avoid all 6 anti-patterns.
+Pick the ONE pattern that would help most and ONE anti-pattern that's hurting most right now.
+
+Encourage experimentation:
+"Try it for two weeks. If it doesn't fit your workflow, adjust or drop it.
+The goal is better outcomes, not policy compliance."
+
+Punchline:
+"You don't need a comprehensive AI policy framework to start.
+A couple of good habits, consistently applied, already move the needle."
 -->
 
 ---
@@ -515,7 +652,7 @@ IMAGE PROMPT: Hand-drawn pencil illustration of two people standing and talking,
 -->
 ![bg right:40%](images/questions.png)
 
-# Q & A
+## Q & A
 
 * Stories, questions, disagreements welcome
 
